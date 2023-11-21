@@ -18,6 +18,7 @@ public class Fighter extends MovingObject{
         dy = 5;
         w = 32;
         h = 32;
+        hp = 10;
         score = 0;
         lflag = false;
         rflag = false;
