@@ -184,7 +184,6 @@ public class GameMaster extends Canvas implements KeyListener{
                 if(this.mode != 1){
                     this.mode++;
                 }
-                ftr.hp = 10;
                 break;
         }
     }
