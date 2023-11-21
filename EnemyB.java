@@ -1,5 +1,7 @@
 import java.awt.*;
 
+//EnemyAクラスとオブジェクトのサイズ、使用する画像ファイル以外同様
+
 class EnemyB extends MovingObject{
     Image img = getToolkit().getImage("enemyB.png");
     
