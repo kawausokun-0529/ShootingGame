@@ -1,6 +1,8 @@
 import java.awt.*;
 
 class EnemyB extends MovingObject{
+    Image img = getToolkit().getImage("enemyB.png");
+    
     EnemyB(int apWidth, int apHeight){
         super(apWidth, apHeight);
         w = 12;
@@ -17,6 +19,17 @@ class EnemyB extends MovingObject{
             x = x + dx;
             y = y + dy;
             if(y > apHeight+h){
+                hp = 0;
+            }
+        }
+    }
+
+    void move(Graphics gc, int apHeight){
+        if(hp>0){
+            gc.drawImage(img, x-w, y-h, this);
+            x = x + dx; 
+            y = y + dy;
+            if(y>apHeight+h){
                 hp = 0;
             }
         }
