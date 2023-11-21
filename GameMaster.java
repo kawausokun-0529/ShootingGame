@@ -131,7 +131,7 @@ public class GameMaster extends Canvas implements KeyListener{
                     enmyA[i].move(buf_gc, imgH);
                 }
                 for(i=0; i<enmyBnum; i++){
-                    enmyB[i].move(buf_gc, imgW, imgH);
+                    enmyB[i].move(buf_gc, imgH);
                 }
                 for(i=0; i<ftrBltNum; i++){
                     ftrBlt[i].move(buf_gc, imgW, imgH);
