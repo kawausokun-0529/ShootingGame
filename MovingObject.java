@@ -1,28 +1,26 @@
 import java.awt.*;
 
-//all moving objects' parent class (abstract class)
-//variable: place(x,y), speed(vx, vy), HP(hp), width w, height h
-//method: move, collisionCheck, revive
+//ゲームに登場するすべての移動オブジェクトに共通の親クラス
 
-abstract class MovingObject extends Frame{ //abstract class
-    //field variable
-    int x; //center coordinate
+abstract class MovingObject extends Frame{ //抽象クラス
+    //フィールド変数
+    int x; //中心座標
     int y;
-    int dx; //speed
+    int dx; //速度
     int dy;
-    int w; //half of width
-    int h; //half of height
-    int hp; //hit point
-    int score, point;
+    int w; //横幅の半分
+    int h; //縦幅の半分
+    int hp; //HP(ゼロ以下で死亡扱い)
+    int score, point;//得点計算用の変数
 
-    //constructor1
+    //コンストラクタ1
     MovingObject(){
     }
-    //constructor2
-    MovingObject(int width, int height){
-        x = (int) (Math.random()*width);
+    //コンストラクタ2
+    MovingObject(int width, int height){//描画領域の大きさを引数に、出現の初期値をランダムに指定
+        x = (int) (Math.random()*width);//画面内でランダム
         y = (int) (Math.random()*height);
-        dx = (int) (Math.random()*6-3);
+        dx = (int) (Math.random()*6-3);//-3~3の範囲でランダム
         dy = (int) (Math.random()*6-3);
         w = 2;
         h = 2;
@@ -32,24 +30,17 @@ abstract class MovingObject extends Frame{ //abstract class
     }
 
     abstract void move(Graphics buf, int apWidth, int apHeight);
+    //オブジェクトを動かし、位置を更新する抽象メソッド
 
     abstract void revive(int w, int h);
+    //オブジェクトを再利用する抽象メソッド
 
     boolean collisionCheck(MovingObject obj, Fighter ftr, int point){
+        //引数は相手のオブジェクト、獲得した得点、相手を倒したときの得点
         if(Math.abs(this.x-obj.x) <= (this.w+obj.w) && Math.abs(this.y-obj.y) <= (this.h+obj.h)){
-            this.hp--;
-            obj.hp--;
-            ftr.score = ftr.score + point;
-            return true;
-        }else{
-            return false;
-        }
-    }
-
-    boolean collisionCheck(MovingObject obj, int point){
-        if(Math.abs(this.x-obj.x) <= (this.w+obj.w) && Math.abs(this.y-obj.y) <= (this.h+obj.h)){
-            this.hp--;
-            obj.hp--;
+            this.hp--;//自分のHPを減らす
+            obj.hp--;//相手のHPを減らす
+            ftr.score = ftr.score + point;//得点計算
             return true;
         }else{
             return false;
